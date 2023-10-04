@@ -32,5 +32,20 @@ namespace MvcBookStore.Controllers
             var dsNhaXB = database.NHAXUATBANs.ToList();
             return PartialView(dsNhaXB);
         }
+        public ActionResult SPTheoChuDe(int id)
+        {
+            var dsSachTheoChuDe = database.SACHes.Where(sach => sach.MaCD == id).ToList();
+            return View("Index",dsSachTheoChuDe);
+        }
+        public ActionResult SPTheoNXB(int id)
+        {
+            var dsSachNXB = database.SACHes.Where(sach => sach.MaNXB == id).ToList();
+            return View("Index", dsSachNXB);
+        }
+        public ActionResult Details(int id)
+        {
+            var sach = database.SACHes.FirstOrDefault(s => s.MaNXB == id);
+            return View(sach);
+        }
     }
 }
