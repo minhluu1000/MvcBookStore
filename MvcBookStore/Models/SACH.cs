@@ -23,8 +23,8 @@ namespace MvcBookStore.Models
     
         public int Masach { get; set; }
         public string Tensach { get; set; }
-        public string Donvitinh { get; set; }
         public Nullable<decimal> Dongia { get; set; }
+        public string Donvitinh { get; set; }
         public string Mota { get; set; }
         public string Hinhminhhoa { get; set; }
         public Nullable<int> MaCD { get; set; }

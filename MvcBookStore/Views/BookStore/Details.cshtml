@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thông tin chi tiết sách</h2>
+<h2>THÔNG TIN CHI TIẾT SÁCH</h2>
 <br />
 <div class="row">
     <div class="offset-md-1 col-md-4">
@@ -14,11 +14,14 @@
     <div class="col-md-6 details">
         <h3>Tên sách: @Model.Tensach</h3>
         <p style="text-align: justify">
-            <span style="font-weight: bold">Mô tả:</span>@Model.Mota
+            <span style="font-weight: bold">Mô tả:</span> @Model.Mota
         </p>
         <p class="price">
-            Giá bán: <span style="color: red; font-size:32px;">@Model.Dongia VNĐ</span>
-        </p>
-    </div>
+            Giá bán: <span style="color:red; font-size:32px;">@Model.Dongia VNĐ </span>
+    </p>
+    <a class="btn btn-primary" href="@Url.Action("ThemSanPhamVaoGio", "GioHang", new{ MaSP = Model.Masach })">
+        Đặt mua
+    </a>
+</div>
 </div>
 

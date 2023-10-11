@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
 namespace MvcBookStore.Controllers
 {
     public class BookStoreController : Controller
@@ -16,11 +17,13 @@ namespace MvcBookStore.Controllers
            sach.Ngaycapnhat).Take(soluong).ToList();
         }
         // GET: BookStore
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            int pageSize = 5;
+            int pageNum = (page ?? 1);
             // Giả sử cần lấy 5 quyển sách mới cập nhật
             var dsSachMoi = LaySachMoi(5);
-            return View(dsSachMoi);
+            return View(dsSachMoi.ToPagedList(pageNum, pageSize)) ;
         }
         public ActionResult LayChuDe()
         {
