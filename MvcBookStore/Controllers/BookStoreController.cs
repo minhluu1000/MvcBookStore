@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using PagedList;
+using System.Drawing.Printing;
+using System.Runtime.InteropServices;
+
 namespace MvcBookStore.Controllers
 {
     public class BookStoreController : Controller
@@ -35,15 +38,19 @@ namespace MvcBookStore.Controllers
             var dsNhaXB = database.NHAXUATBANs.ToList();
             return PartialView(dsNhaXB);
         }
-        public ActionResult SPTheoChuDe(int id)
+        public ActionResult SPTheoChuDe(int id,int? page)
         {
+            int pageSize = 5;
+            int pageNum= (page ?? 1);
             var dsSachTheoChuDe = database.SACHes.Where(sach => sach.MaCD == id).ToList();
-            return View("Index",dsSachTheoChuDe);
+            return View("Index",dsSachTheoChuDe.ToPagedList(pageNum, pageSize));
         }
-        public ActionResult SPTheoNXB(int id)
+        public ActionResult SPTheoNXB(int id, int? page)
         {
+            int pageSize = 5;
+            int pageNum = (page ?? 1);
             var dsSachNXB = database.SACHes.Where(sach => sach.MaNXB == id).ToList();
-            return View("Index", dsSachNXB);
+            return View("Index", dsSachNXB.ToPagedList(pageNum, pageSize));
         }
         public ActionResult Details(int id)
         {

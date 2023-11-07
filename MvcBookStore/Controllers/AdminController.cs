@@ -18,10 +18,10 @@ namespace MvcBookStore.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            if (Session["Admin"] == null)
-            {
-                return RedirectToAction("Login");
-            }
+            //if (Session["Admin"] == null)
+            //{
+            //    return RedirectToAction("Login");
+            //}
             return View();
         }
         [HttpGet]

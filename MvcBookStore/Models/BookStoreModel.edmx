@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLBANSACHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLBANSACHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMIN">
           <Key>
             <PropertyRef Name="UserAdmin" />
@@ -126,7 +126,7 @@
               <PropertyRef Name="Masach" />
             </Principal>
             <Dependent Role="CTDATHANG">
-              <PropertyRef Name="SoDH" />
+              <PropertyRef Name="Masach" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -229,10 +229,20 @@
             <End Role="VIETSACH" EntitySet="VIETSACH" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBANSACHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="UserAdmin" />
+          </Key>
+          <Property Name="UserAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassAdmin" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaiTro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="CHUDE">
           <Key>
             <PropertyRef Name="MaCD" />
@@ -371,7 +381,7 @@
               <PropertyRef Name="Masach" />
             </Principal>
             <Dependent Role="CTDATHANG">
-              <PropertyRef Name="SoDH" />
+              <PropertyRef Name="Masach" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -424,6 +434,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QLBANSACHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
           <EntitySet Name="CHUDEs" EntityType="Self.CHUDE" />
           <EntitySet Name="CTDATHANGs" EntityType="Self.CTDATHANG" />
           <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
@@ -460,23 +471,23 @@
             <End Role="TACGIA" EntitySet="TACGIAs" />
             <End Role="VIETSACH" EntitySet="VIETSACHes" />
           </AssociationSet>
-          <EntitySet Name="ADMINs" EntityType="QLBANSACHModel.ADMIN" />
         </EntityContainer>
-        <EntityType Name="ADMIN">
-          <Key>
-            <PropertyRef Name="UserAdmin" />
-          </Key>
-          <Property Name="UserAdmin" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="PassAdmin" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VaiTro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QLBANSACHModelStoreContainer" CdmEntityContainer="QLBANSACHEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="QLBANSACHModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="UserAdmin" ColumnName="UserAdmin" />
+                <ScalarProperty Name="PassAdmin" ColumnName="PassAdmin" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CHUDEs">
             <EntityTypeMapping TypeName="QLBANSACHModel.CHUDE">
               <MappingFragment StoreEntitySet="CHUDE">
@@ -572,16 +583,6 @@
                 <ScalarProperty Name="MaTG" ColumnName="MaTG" />
                 <ScalarProperty Name="Masach" ColumnName="Masach" />
                 <ScalarProperty Name="Vaitro" ColumnName="Vaitro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ADMINs">
-            <EntityTypeMapping TypeName="QLBANSACHModel.ADMIN">
-              <MappingFragment StoreEntitySet="ADMIN">
-                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="PassAdmin" ColumnName="PassAdmin" />
-                <ScalarProperty Name="UserAdmin" ColumnName="UserAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

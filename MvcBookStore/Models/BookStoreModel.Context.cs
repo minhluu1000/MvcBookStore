@@ -25,6 +25,7 @@ namespace MvcBookStore.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<CHUDE> CHUDEs { get; set; }
         public virtual DbSet<CTDATHANG> CTDATHANGs { get; set; }
         public virtual DbSet<DONDATHANG> DONDATHANGs { get; set; }
@@ -33,6 +34,5 @@ namespace MvcBookStore.Models
         public virtual DbSet<SACH> SACHes { get; set; }
         public virtual DbSet<TACGIA> TACGIAs { get; set; }
         public virtual DbSet<VIETSACH> VIETSACHes { get; set; }
-        public virtual DbSet<ADMIN> ADMINs { get; set; }
     }
 }
